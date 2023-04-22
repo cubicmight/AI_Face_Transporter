@@ -15,7 +15,7 @@ def extract_index_nparray(nparray):
 img = cv2.imread("picture.jpg")
 img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 mask = np.zeros_like(img_gray)
-img2 = cv2.imread("images/Gener-1682193144/Gener-1682193144-0.png")
+img2 = cv2.imread("images/Gener-1682199810/Gener-1682199810-0.png")
 img2_gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
 

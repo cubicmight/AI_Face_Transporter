@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+<!--needed for logs for stern-->
+{% block content %}
+
+<div class="container-fluid text-center">
+    <div class="p-5 m-5 row bg-danger-subtle">
+        <div class="row text-center">
+            <h1>Video Stream</h1>
+            <img class="center-block img-fluid" src="{{ url_for('video_feed') }}">
+        </div>
+    </div>
+    <div class="p-5 row">
+        <div class="col-sm-4 bg-light">
+            <div class="p-5 row">
+                <div class="col-md-12">
+                    <button class="btn btn-primary" onclick=dalle(')
+                            type="button"></button>
+                </div>
+            </div>
+            <div class="p-5 row">
+                <div class="col">
+                </div>
+                <div class="col">
+                    <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown"
+                                aria-expanded="false" id="dropdown_gender">
+                            Dropdown button
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#">Action</a></li>
+                            <li><a class="dropdown-item" href="#">Another action</a></li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-4 bg-warning-subtle">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th scope="col">User</th>
+                        <th scope="col">Command</th>
+                        <th scope="col">Result</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-sm-4 bg-primary-subtle">
+            Something Else
+        </div>
+    </div>
+</div>
+</div>
+<div class="container-sm">
+    <div class="p-5 row">
+        <div class="col">
+        </div>
+        <div class="col">
+            <button class="btn btn-primary" onclick=fetchlogs() type="button">Add Row</button>
+        </div>
+        <div class="col">
+        </div>
+    </div>
+</div>
+<script>
+    var dropdown_gender = document.getElementById('dropdown_gender')
+    dropdown_gender.addEventListener('hidden.bs.dropdown', function (ev) {
+        console.log("Selected value is: " + dropdown_gender.value);
+        gender = dropdown_gender.value;
+    })
+    // let dropdownList = document.getElementById('dropdown_gender');
+    //                 dropdownList.onchange = (ev) => {
+    //                     console.log("Selected value is: " + dropdownList.value);
+    //                     gender = dropdownList.value;
+</script>
+{% endblock %}
