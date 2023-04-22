@@ -12,10 +12,10 @@ def extract_index_nparray(nparray):
     return index
 
 
-img = cv2.imread("bradley_cooper.jpg")
+img = cv2.imread("picture.jpg")
 img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 mask = np.zeros_like(img_gray)
-img2 = cv2.imread("jim_carrey.jpg")
+img2 = cv2.imread("images/Gener-1682193144/Gener-1682193144-0.png")
 img2_gray = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
 
@@ -146,7 +146,14 @@ for triangle_index in indexes_triangles:
     # Reconstructing destination face
     img2_new_face_rect_area = img2_new_face[y: y + h, x: x + w]
     img2_new_face_rect_area_gray = cv2.cvtColor(img2_new_face_rect_area, cv2.COLOR_BGR2GRAY)
+    # Let's create a mask to remove the lines between the triangles
     _, mask_triangles_designed = cv2.threshold(img2_new_face_rect_area_gray, 1, 255, cv2.THRESH_BINARY_INV)
+    if warped_triangle.shape[:2] != mask_triangles_designed.shape[:2]:
+        raise ValueError('Input matrices have different sizes!')
+    if mask_triangles_designed.dtype not in [np.uint8, np.int8]:
+        raise ValueError('Mask matrix must have 8-bit unsigned or signed data type!')
+
+    # apply bitwise_and operation
     warped_triangle = cv2.bitwise_and(warped_triangle, warped_triangle, mask=mask_triangles_designed)
 
     img2_new_face_rect_area = cv2.add(img2_new_face_rect_area, warped_triangle)
